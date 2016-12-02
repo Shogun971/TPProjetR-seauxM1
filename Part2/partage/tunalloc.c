@@ -11,7 +11,7 @@
 #include <linux/if_tun.h>
 
 
-
+#define BUFF_SIZE 1024
 
 int tun_alloc(char *dev)
 {
@@ -40,7 +40,13 @@ int tun_alloc(char *dev)
   }
   strcpy(dev, ifr.ifr_name);
   return fd;
-}      
+} 
+
+void persist_copy(int src, int dst){
+	char buffer[BUFF_SIZE];
+	ssize_t done = read(src, buffer, BUFF_SIZE);
+	done = write(dst, buffer, BUFF_SIZE);
+}     
 
 int main (int argc, char** argv){
 	int tun;
@@ -52,7 +58,7 @@ int main (int argc, char** argv){
 	strcpy(buffer, argv[1]);
 	tun = tun_alloc(buffer);
 	while(1){
-		
+		//persist_copy(tun, 1);
 	}
   return 0;
 }

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/sbin/ifconfig tun0 172.16.2.1/28
+sudo ip addr add 172.16.2.1/28 dev tun0
