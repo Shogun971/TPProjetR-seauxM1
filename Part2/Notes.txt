@@ -18,3 +18,15 @@ ATTENTION : NBR = 0 ne doit pas être utilisé car elle est déjà utilisé par 
 
 6/ Tester les pings entre machines ! Si le ping ne fonctionne pas essayer d'effacer les routes créées par défaut via : sudo ip route delete default
 NOTE : La passerelle c'est un mec que vous connaissez que vous pouvez atteindre.
+
+----------------------------------------------
+Part 2 :
+------
+
+On lance tun0 avec un sudo dans VM1-6 (Le choix de la VM change-t-il quelque chose?)
+sudo ./tunalloc tun0
+
+On ouvre un autre terminal toujours dans /mnt/partage
+le fichier de configuration
+
+(ip link : pour voir les infos de tun0=
