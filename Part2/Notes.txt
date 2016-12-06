@@ -37,3 +37,8 @@ https://www.garron.me/en/linux/add-secondary-ip-linux.html
 
 2.1.3/ Si on ping 172.16.2.1, on ping quelque chose mais on ne détecte rien sur Wireshark. On ping le tunnel dans le vide, on a son adresse donc ça répond. Mais pas de destinataire, donc WS en PLS. (Comment marche WS?)
 2.1.4/ Si on ping 172.16.2.10 on ne ping rien mais on détecte quelque chose sur WS. On ping quelqu'un donc WS voit quelque chose mais on n'a pas d'écho du destinataire puisque personne à l'autre bout du tunnel. 
+2.3.4/ On perd les premières infos dans les paquets qu'on reçoit (2 premiers octets : protocole et?)
+ifr.ifr_flags = IFF_TUN|IFF_NO_PI; 
+
+
+

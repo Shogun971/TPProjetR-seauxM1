@@ -30,7 +30,7 @@ int tun_alloc(char *dev)
    *
    *        IFF_NO_PI - Do not provide packet information  
    */ 
-  ifr.ifr_flags = IFF_TUN; 
+  ifr.ifr_flags = IFF_TUN|IFF_NO_PI; 
   if( *dev )
     strncpy(ifr.ifr_name, dev, IFNAMSIZ);
 
@@ -58,7 +58,7 @@ int main (int argc, char** argv){
 	strcpy(buffer, argv[1]);
 	tun = tun_alloc(buffer);
 	while(1){
-		//persist_copy(tun, 1);
+		persist_copy(tun, 1);
 	}
   return 0;
 }
