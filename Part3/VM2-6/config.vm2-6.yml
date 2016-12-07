@@ -1,0 +1,23 @@
+########################################################################
+
+# avec sudo ansible-playbook -c local config.vm1.yml
+---
+- hosts: localhost
+  tasks:
+    # adresse IPv4 avec nmcli (CLI pour NetworkManager)
+    # éventuellement, pour supprimer les connexions en trop, faire
+    # $ nmcli connection del ansible-eth1
+    - shell: nmcli connection del "Connexion filaire 1"
+      ignore_errors: True
+    - shell: nmcli connection del "Connexion filaire 2"
+      ignore_errors: True
+    - shell: nmcli connection del "ansible-eth1"
+      ignore_errors: True
+    - shell: nmcli connection del "ansible-eth2"
+      ignore_errors: True
+    - shell: nmcli connection add ifname eth1 con-name ansible-eth1 type ethernet ip6 fc00:1234:1::26/64 #Pas de GW car il n'y a aucun réseau ipv6 que VM2-6 ne connait pas !
+    - shell: nmcli connection add ifname eth2 con-name ansible-eth2 type ethernet ip6 fc00:1234:2::26/64 
+    - sysctl: name="net.ipv6.conf.all.forwarding" value=1 sysctl_set=yes state=present reload=yes
+
+
+      
